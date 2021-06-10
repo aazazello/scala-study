@@ -22,12 +22,12 @@ class Calculator (val variables: VariablesResolver.type) {
             i match {
                 case iInstr: Operator => {
                     val v = iInstr.operands match {
-                        case 1 => List(c.pop().asInstanceOf[Operand[_]])
-                        case 2 => List(c.pop().asInstanceOf[Operand[_]],c.pop().asInstanceOf[Operand[_]])
+                        case 1 => List(c.pop().asInstanceOf[Constant[iInstr.Tin]])
+                        case 2 => List(c.pop().asInstanceOf[Constant[iInstr.Tin]],c.pop().asInstanceOf[Constant[iInstr.Tin]])
                         case _ => null
                     }
                     calc(iInstr,v.reverse) match {
-                        case Right(x) => c.push(Constant[AnyVal](x))
+                        case Right(x) => c.push(x)
                         case Left(error) => { 
                                                 println(s"An error ${error} occured") 
                                                 c.clear()
@@ -51,7 +51,7 @@ class Calculator (val variables: VariablesResolver.type) {
         c.pop().asInstanceOf[Constant[AnyVal]]
     }
     
-    private def calc(op: Operator,vals: List[Operand[_]]): Either[OperatorError, AnyVal] = {
+    private def calc(op: Operator,vals: List[Constant[op.Tin]]): Either[OperatorError, Constant[op.Tout]] = {
         
         print(s"Calc ${op.symbol} on ${vals.head.value}")
         if (op.operands > 1 )
@@ -60,8 +60,8 @@ class Calculator (val variables: VariablesResolver.type) {
             println()
 
         op.operands match {
-            case 1 => op.run(vals.head.value.asInstanceOf[AnyVal])
-            case 2 => op.run(vals.head.value.asInstanceOf[AnyVal],vals.last.value.asInstanceOf[AnyVal])
+            case 1 => op.run(vals.head.asInstanceOf[Constant[op.Tin]])
+            case 2 => op.run(vals.head.asInstanceOf[Constant[op.Tin]],vals.last.asInstanceOf[Constant[op.Tin]])
             case _ => Left(InvalidParametersError("Неподдерживаемое число параметров"))
         }
     }
