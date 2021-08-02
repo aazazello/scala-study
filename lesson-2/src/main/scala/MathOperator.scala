@@ -11,7 +11,7 @@ abstract class MathOperator (numberOfOperands: Int, operationSymbol: String, ope
         override def run(left: Constant[Tin], right: Constant[Tin]): Either[OperatorError, Constant[Tout]]
 }
 
-object PlusOperator extends MathOperator (2, "+", 2) {
+object PlusOperator extends MathOperator (2, "+", 50) {
 
 
     def run(single: Constant[Tin]): Either[OperatorError, Constant[Tout]] = { Left(InvalidParametersError("Операция сложения требует двух параметров"))}
@@ -22,7 +22,7 @@ object PlusOperator extends MathOperator (2, "+", 2) {
 }
 
 
-object MinusOperator extends MathOperator (2, "-", 2) {
+object MinusOperator extends MathOperator (2, "-", 50) {
 
     def run(single:Constant[Tin]): Either[OperatorError, Constant[Tin]] = { Left(InvalidParametersError("Операция вычитания требует двух параметров"))}
 
@@ -31,7 +31,7 @@ object MinusOperator extends MathOperator (2, "-", 2) {
     }
 }
 
-object MultiplyOperator extends MathOperator (2, "*", 3) {
+object MultiplyOperator extends MathOperator (2, "*", 75) {
 
     def run(single:Constant[Tin]): Either[OperatorError, Constant[Tout]] = { Left(InvalidParametersError("Операция умножения требует двух параметров"))}
 
@@ -40,7 +40,7 @@ object MultiplyOperator extends MathOperator (2, "*", 3) {
     }
 }
 
-object DivideOperator extends MathOperator (2, "/", 3) {
+object DivideOperator extends MathOperator (2, "/", 75) {
 
     def run(single:Constant[Tin]): Either[OperatorError, Constant[Tout]] = { Left(InvalidParametersError("Операция деления требует двух параметров"))}
     
@@ -52,7 +52,7 @@ object DivideOperator extends MathOperator (2, "/", 3) {
     }
 }
 
-object PowerOperator extends MathOperator(2, "^", 3) {
+object PowerOperator extends MathOperator(2, "^", 75) {
 
     def run(single:Constant[Tin]): Either[OperatorError, Constant[Tout]] = { Left(InvalidParametersError("Операция возведения в степень требует двух параметров"))}
 
@@ -61,7 +61,7 @@ object PowerOperator extends MathOperator(2, "^", 3) {
    }
 }
 
-object LogarithmNaturalOperator extends MathOperator(1, "ln",3) {
+object LogarithmNaturalOperator extends MathOperator(1, "ln", 75) {
 
     def run(single:Constant[Tin]): Either[OperatorError, Constant[Tout]] = {
         Right(Constant[Tout](math.log(single.value)))

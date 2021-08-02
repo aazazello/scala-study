@@ -9,7 +9,7 @@ abstract class ComparisionOperator (numberOfOperands: Int, operationSymbol: Stri
         override def run(left: Constant[Tin], right: Constant[Tin]): Either[OperatorError, Constant[Tout]]
 }
 
-object NonEquivalentOperator extends ComparisionOperator(2,"<>", 1) {
+object NonEquivalentOperator extends ComparisionOperator(2,"<>", 10) {
     def run(single:Constant[Tin]): Either[OperatorError, Constant[Tout]] = { Left(InvalidParametersError("Операция неравенства требует двух параметров"))}
 
     def run(left: Constant[Tin], right: Constant[Tin]): Either[OperatorError, Constant[Tout]] = { 
@@ -17,7 +17,7 @@ object NonEquivalentOperator extends ComparisionOperator(2,"<>", 1) {
     }
 }
 
-object EquivalentOperator extends ComparisionOperator(2,"=", 1) {
+object EquivalentOperator extends ComparisionOperator(2,"=", 10) {
     def run(single:Constant[Tin]): Either[OperatorError, Constant[Tout]] = { Left(InvalidParametersError("Операция равенства требует двух параметров"))}
 
     def run(left: Constant[Tin], right: Constant[Tin]): Either[OperatorError, Constant[Tout]] = { 
@@ -25,7 +25,7 @@ object EquivalentOperator extends ComparisionOperator(2,"=", 1) {
     }
 }
 
-object GreateOperator extends ComparisionOperator(2,">", 1) {
+object GreateOperator extends ComparisionOperator(2,">", 10) {
     def run(single:Constant[Tin]): Either[OperatorError, Constant[Tout]] = { Left(InvalidParametersError("Операция сравнения (больше) требует двух параметров"))}
 
     def run(left: Constant[Tin], right: Constant[Tin]): Either[OperatorError, Constant[Tout]] = { 
@@ -34,7 +34,7 @@ object GreateOperator extends ComparisionOperator(2,">", 1) {
 
 }
 
-object LessOperator extends ComparisionOperator(2,"<",1) {
+object LessOperator extends ComparisionOperator(2,"<",10) {
     def run(single:Constant[Tin]): Either[OperatorError, Constant[Tout]] = { Left(InvalidParametersError("Операция сравнения (меньше) требует двух параметров"))}
 
     def run(left: Constant[Tin], right: Constant[Tin]): Either[OperatorError, Constant[Tout]] = { 
