@@ -19,5 +19,5 @@ abstract class Operator (numberOfOperands: Int, operationSymbol: String, operati
 }
 
 object OperatorSet {
-    def all(): List[Operator] = { List( MinusOperator, PlusOperator, MultiplyOperator, DivideOperator, PowerOperator, EquivalentOperator, NonEquivalentOperator, GreateOperator, LessOperator, LogarithmNaturalOperator ) }
+    def all(): List[Operator] = { List( MinusOperator, PlusOperator, MultiplyOperator, DivideOperator, PowerOperator, EquivalentOperator, NonEquivalentOperator, GreateOperator, LessOperator, LogarithmNaturalOperator, AndOperator, OrOperator, NotOperator ) }
 }
